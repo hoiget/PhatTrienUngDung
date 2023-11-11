@@ -5,29 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hạng mục</title>
-    <style>
-       
-        h2{
-            width:400px;
-            border: 1px solid black;
-            border-radius: 20px;
-            text-align: center;
-            background-color: rgb(30, 144, 255);
-            color: aliceblue;
-        }
-        input,textarea{
-            width:400px;
-        }
-        #but{
-            width:200px;
-        }
-       
-    </style>
+    <link rel="stylesheet" href="./css/phuc.css">
     
 </head>
 <body>
 <?php
-    require_once_once("Controller/cproduct.php");
+    include_once("Controller/cproduct.php");
     $p=new controlpro();
     $kq=$p->editpro($_REQUEST['editpro']);
     if(mysql_num_rows($kq)>0){
@@ -65,12 +48,13 @@
                 <td>
                     <select name="hangm" >
                     <?php
-                    require_once_once("Controller/cproduct.php");
+                    include_once("Controller/cproduct.php");
                     $pro= new controlpro();
                     $table=$pro->getallproducy1();
                     if(mysql_num_rows($table)){
                         while($row=mysql_fetch_assoc($table)){
-                            echo "<option value=".$row["id"].">".$row["tenhangmuc"]."</option>";
+                            $selected = ($row["id"] == $hangm) ? "selected" : "";
+                            echo "<option value=".$row["id"]." ".$selected.">".$row["tenhangmuc"]."</option>";
                         }
                     }
                     
@@ -107,7 +91,7 @@
     
     if($kq==1){
         echo"<script>alert('cập nhật dữ liệu thành công')</script>";
-        
+      
     }elseif($kq==0){
         echo"<script>alert('ko cập nhật đc')</script>";
     }

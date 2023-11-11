@@ -6,23 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hạn mức chi</title>
-    <style>
-       h2{
-            width:400px;
-            border: 1px solid black;
-            border-radius: 20px;
-            text-align: center;
-            background-color: rgb(30, 144, 255);
-            color: aliceblue;
-        }
-        input,textarea{
-            width:400px;
-        }
-        #but{
-            width:200px;
-        }
-       
-    </style>
+    <link rel="stylesheet" href="./css/phuc.css">
     
 </head>
 <body>
@@ -36,7 +20,7 @@
             </tr>
             <tr>
                 <td>số tiền cảnh báo:</td>
-                <td><input type="number" name="stcb"  required></td>
+                <td><input type="number" name="stcb" required ></td>
             </tr>
             <tr>
                 <td>số tiền hạn mức:</td>
@@ -47,7 +31,7 @@
                 <td>
                     <select name="hangm">
                     <?php
-                    require_once_once("Controller/cproduct.php");
+                    include_once("Controller/cproduct.php");
                     $pro= new controlpro();
                     $table=$pro->getallproducy1();
                     if(mysql_num_rows($table)){
@@ -68,7 +52,7 @@
                 <td>
                     <select name="tk" >
                     <?php
-                    require_once_once("Controller/cproduct.php");
+                    include_once("Controller/cproduct.php");
                     $pro= new controlpro();
                     $table=$pro->getallproducy2();
                     if(mysql_num_rows($table)){
@@ -85,7 +69,7 @@
             </tr> 
             <tr>
                 <td>Thời gian bắt đầu:</td>
-                <td><input type="date" name="tgbd" id=""></td>
+                <td><input type="date" name="tgbd"  required></td>
             </tr>
             <tr>
                 <td>Thời gian kết thúc:</td>
@@ -107,7 +91,7 @@
 </body>
 </html>
 <?php
-require_once_once("Controller/cproduct.php");
+include_once("Controller/cproduct.php");
 if(isset($_REQUEST['btnsub'])){
     $ten=$_REQUEST['ten'];
     $stcb=$_REQUEST['stcb'];
@@ -126,7 +110,7 @@ if(isset($_REQUEST['btnsub'])){
     }else{
         $kq=$p->inserthanmuc($ten,$hangmuc,$stcb,$sthm,$tgbd,$tgkt,$taikhoan);
         if($kq==1){
-            echo"<script>alert('cập nhật dữ liệu thành công')</script>";
+            echo"<script>alert('Thêm dữ liệu thành công')</script>";
             
         }elseif($kq==0){
             echo"<script>alert('ko cập nhật đc')</script>";
